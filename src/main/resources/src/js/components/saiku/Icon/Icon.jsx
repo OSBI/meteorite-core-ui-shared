@@ -15,6 +15,7 @@
  */
 
 import React from 'react';
+import { elementType } from 'react-prop-types';
 import classNames from 'classnames';
 
 /**
@@ -36,6 +37,7 @@ class Icon extends React.Component {
    */
   render() {
     let {
+      componentClass: ComponentClass,
       name, fixed, spin, pulse,
       size, rotate, flip
     } = this.props;
@@ -60,12 +62,11 @@ class Icon extends React.Component {
     }
 
     return (
-      <i
+      <ComponentClass
         className={className}
         {...this.props}
         style={this.props.style}
-      >
-      </i>
+      />
     );
   }
 }
@@ -73,6 +74,7 @@ class Icon extends React.Component {
 Icon.displayName = 'Icon';
 
 Icon.propTypes = {
+  componentClass: elementType,
   className: React.PropTypes.string,
   style: React.PropTypes.string,
   faClass: React.PropTypes.string,
@@ -87,6 +89,7 @@ Icon.propTypes = {
 };
 
 Icon.defaultProps = {
+  componentClass: 'i',
   faClass: 'fa',
   fixed: false,
   spin: false,

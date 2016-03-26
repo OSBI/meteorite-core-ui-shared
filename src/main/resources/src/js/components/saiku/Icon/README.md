@@ -12,18 +12,19 @@ import { Icon } from '../react-saiku';
 
 ### Props
 
-Attribute   | Options                                       | Default | Description
----         | ---                                           | ---     | ---
-`className` | *string*                                      |         | The `className` props specifies one or more classnames for an element.
-`style`     | *string*                                      |         | The `style` props specifies an inline style for an element.
-`faClass`   | *string*                                      | `fa`    | The `faClass` props specifies the default class name `fa`.
-`name`      | *string*                                      |         | Name of the icon to use.
-`fixed`     | *boolean*                                     | `false` | Make buttons fixed width.
-`spin`      | *boolean*                                     | `false` | Spin the icon.
-`pulse`     | *boolean*                                     | `false` | Rotate icon with 8 steps (rather than smoothly).
-`size`      | `lg`, `2x`, `3x`, `4x`, `5x`                  |         | The icon scaling size.
-`rotate`    | `45`, `90`, `135`, `180`, `225`, `270`, `315` |         | The degree to rotate the icon.
-`flip`      | `horizontal`, `vertical`                      |         | Flip the icon's orientation.
+Attribute        | Options                                       | Default | Description
+---              | ---                                           | ---     | ---
+`componentClass` | *elementType*                                 | `i`     | You can use a custom element for this component. Ex.: `span`, `a` etc.
+`className`      | *string*                                      |         | The `className` props specifies one or more classnames for an element.
+`style`          | *string*                                      |         | The `style` props specifies an inline style for an element.
+`faClass`        | *string*                                      | `fa`    | The `faClass` props specifies the default class name `fa`.
+`name`           | *string*                                      |         | Name of the icon to use.
+`fixed`          | *boolean*                                     | `false` | Make buttons fixed width.
+`spin`           | *boolean*                                     | `false` | Spin the icon.
+`pulse`          | *boolean*                                     | `false` | Rotate icon with 8 steps (rather than smoothly).
+`size`           | `lg`, `2x`, `3x`, `4x`, `5x`                  |         | The icon scaling size.
+`rotate`         | `45`, `90`, `135`, `180`, `225`, `270`, `315` |         | The degree to rotate the icon.
+`flip`           | `horizontal`, `vertical`                      |         | Flip the icon's orientation.
 
 ### Methods
 
