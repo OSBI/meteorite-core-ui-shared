@@ -2,6 +2,6 @@
 
 ## Summary
 
-* [Icon](icon/)
+* [Icon](Icon/)
 
 **[⬅ back to main](../)**
