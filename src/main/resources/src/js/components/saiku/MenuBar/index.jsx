@@ -178,17 +178,29 @@ class MenuBar extends React.Component {
     }
   }
 
+  blockTopbar(isBlock) {
+    if (isBlock) {
+      return {
+        position: 'relative !important'
+      };
+    }
+  }
+
   render() {
     let data = (this.state && !(_.isEmpty(this.state.models))) ?
       this.state.models.getData() : [];
     let isLogo = this.props.logo;
     let isMenuMobile = this.props.menuMobile;
+    let isBlock = this.props.block;
+    let styleTopbar = this.blockTopbar(isBlock) || {};
+
+    styleTopbar = Object.assign(styleTopbar, this.props.style);
 
     return (
       <div
         className={classNames('topbar', this.props.className)}
         {...this.props}
-        style={this.props.style}
+        style={styleTopbar}
       >
         {this.renderLogo(isLogo)}
         <Navbar role="navigation">
@@ -217,19 +229,18 @@ class MenuBar extends React.Component {
 
 MenuBar.propTypes = {
   className: React.PropTypes.string,
-  style: React.PropTypes.oneOfType([
-    React.PropTypes.string,
-    React.PropTypes.number
-  ]),
+  style: React.PropTypes.object,
   contentLeft: React.PropTypes.node,
   contentRight: React.PropTypes.node,
   logo: React.PropTypes.bool,
-  menuMobile: React.PropTypes.bool
+  menuMobile: React.PropTypes.bool,
+  block: React.PropTypes.bool
 };
 
 MenuBar.defaultProps = {
   logo: false,
-  menuMobile: false
+  menuMobile: false,
+  block: false
 };
 
 export default MenuBar;
