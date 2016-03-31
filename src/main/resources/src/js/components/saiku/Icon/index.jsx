@@ -71,8 +71,6 @@ class Icon extends React.Component {
   }
 }
 
-Icon.displayName = 'Icon';
-
 Icon.propTypes = {
   componentClass: elementType,
   className: React.PropTypes.string,
