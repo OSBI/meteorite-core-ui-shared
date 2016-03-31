@@ -49,7 +49,7 @@ class MyComponent extends React.Component {
           name="home"
           size="2x"
           spin
-          style={{ textShadow: '0 1px 0 rgba(0, 0, 0, 0.1)' }}
+          style={{ 'text-shadow': '0 1px 0 rgba(0, 0, 0, 0.1)' }}
         />
       </div>
     );
