@@ -28,33 +28,16 @@ import {
   Button
 } from 'react-bootstrap';
 import Clearfix from '../../bootstrap/Clearfix';
-import { Icon } from '../react-saiku';
-import Logo from '../Logo';
-import MenubarCollection from './MenuBarCollection';
+import {
+  Icon,
+  Logo
+} from '../react-saiku';
 
 class MenuBar extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      models: ''
-    };
-
-    this._menubarUI = new MenubarCollection();
-
-    autoBind(this, 'handleFetchUI', 'renderMenu');
-  }
-
-  componentDidMount() {
-    this._menubarUI.fetch({
-      success: this.handleFetchUI
-    });
-  }
-
-  handleFetchUI(menubarUI) {
-    this.setState({
-      models: menubarUI.models[0]
-    });
+    autoBind(this, 'renderMenu');
   }
 
   renderMenuItem(menuItem, index) {
@@ -187,8 +170,7 @@ class MenuBar extends React.Component {
   }
 
   render() {
-    let data = (this.state && !(_.isEmpty(this.state.models))) ?
-      this.state.models.getData() : [];
+    let data = this.props.data || [];
     let isLogo = this.props.logo;
     let isMenuMobile = this.props.menuMobile;
     let isBlock = this.props.block;
@@ -229,6 +211,7 @@ class MenuBar extends React.Component {
 
 MenuBar.propTypes = {
   className: React.PropTypes.string,
+  data: React.PropTypes.array,
   style: React.PropTypes.object,
   contentLeft: React.PropTypes.node,
   contentRight: React.PropTypes.node,
