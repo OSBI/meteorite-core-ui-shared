@@ -28,10 +28,8 @@ import {
   Button
 } from 'react-bootstrap';
 import Clearfix from '../../bootstrap/Clearfix';
-import {
-  Icon,
-  Logo
-} from '../react-saiku';
+import { Icon } from '../react-saiku';
+import Logo from '../Logo';
 
 class MenuBar extends React.Component {
   constructor(props) {
@@ -47,6 +45,12 @@ class MenuBar extends React.Component {
     let className = componentProps.className;
 
     componentProps.className = classNames(className, isVisible);
+
+    if (menuItem.icon) {
+      const icon = <Icon name={menuItem.icon} />;
+
+      menuItem.name = `${icon} ${menuItem.name}`;
+    }
 
     if (!componentProps.id) {
       componentProps.id = key;
@@ -73,6 +77,12 @@ class MenuBar extends React.Component {
     let className = componentProps.className;
 
     componentProps.className = classNames(className, isVisible);
+
+    if (menu.icon) {
+      const icon = <Icon name={menu.icon} />;
+
+      menu.name = `${icon} ${menu.name}`;
+    }
 
     if (!componentProps.id) {
       componentProps.id = key;
@@ -101,6 +111,12 @@ class MenuBar extends React.Component {
 
     componentProps.className = classNames(className, isVisible);
 
+    if (menu.icon) {
+      const icon = <Icon name={menu.icon} />;
+
+      menu.name = `${icon} ${menu.name}`;
+    }
+
     if (!componentProps.id) {
       componentProps.id = key;
     }
@@ -125,6 +141,16 @@ class MenuBar extends React.Component {
     }
     else if (menu.component === 'NavItem') {
       return this.renderNavItem(menu, index);
+    }
+  }
+
+  renderBrand(brandName) {
+    if (brandName) {
+      return (
+        <Navbar.Brand>
+          <a href="#">{brandName}</a>
+        </Navbar.Brand>
+      );
     }
   }
 
@@ -171,6 +197,7 @@ class MenuBar extends React.Component {
 
   render() {
     let data = this.props.data || [];
+    let brandName = data.brandName || '';
     let isLogo = this.props.logo;
     let isMenuMobile = this.props.menuMobile;
     let isBlock = this.props.block;
@@ -187,6 +214,7 @@ class MenuBar extends React.Component {
         {this.renderLogo(isLogo)}
         <Navbar role="navigation">
           <Navbar.Header>
+            {this.renderBrand(brandName)}
             <Navbar.Toggle />
           </Navbar.Header>
           <Navbar.Collapse>
