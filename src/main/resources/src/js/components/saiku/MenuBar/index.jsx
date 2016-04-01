@@ -38,109 +38,11 @@ class MenuBar extends React.Component {
     autoBind(this, 'renderMenu');
   }
 
-  renderMenuItem(menuItem, index) {
-    let key = _.uniqueId(`menu_item_${index}_`);
-    let isVisible = !menuItem.visible ? 'hidden' : '';
-    let { componentProps } = menuItem;
-    let className = componentProps.className;
-
-    componentProps.className = classNames(className, isVisible);
-
-    if (menuItem.icon) {
-      const icon = <Icon name={menuItem.icon} />;
-
-      menuItem.name = `${icon} ${menuItem.name}`;
-    }
-
-    if (!componentProps.id) {
-      componentProps.id = key;
-    }
-
-    if (!componentProps.eventKey) {
-      componentProps.eventKey = index;
-    }
-
-    return (
-      <MenuItem
-        key={key}
-        {...componentProps}
-      >
-        {menuItem.name}
-      </MenuItem>
-    );
-  }
-
-  renderNavDropdown(menu, index) {
-    let key = _.uniqueId(`menu_${index}_`);
-    let isVisible = !menu.visible ? 'hidden' : '';
-    let { componentProps } = menu;
-    let className = componentProps.className;
-
-    componentProps.className = classNames(className, isVisible);
-
-    if (menu.icon) {
-      const icon = <Icon name={menu.icon} />;
-
-      menu.name = `${icon} ${menu.name}`;
-    }
-
-    if (!componentProps.id) {
-      componentProps.id = key;
-    }
-
-    if (!componentProps.eventKey) {
-      componentProps.eventKey = index;
-    }
-
-    return (
-      <NavDropdown
-        key={key}
-        title={menu.name}
-        {...componentProps}
-      >
-        {menu.children.map(this.renderMenuItem)}
-      </NavDropdown>
-    );
-  }
-
-  renderNavItem(menu, index) {
-    let key = _.uniqueId(`menu_${index}_`);
-    let isVisible = !menu.visible ? 'hidden' : '';
-    let { componentProps } = menu;
-    let className = componentProps.className;
-
-    componentProps.className = classNames(className, isVisible);
-
-    if (menu.icon) {
-      const icon = <Icon name={menu.icon} />;
-
-      menu.name = `${icon} ${menu.name}`;
-    }
-
-    if (!componentProps.id) {
-      componentProps.id = key;
-    }
-
-    if (!componentProps.eventKey) {
-      componentProps.eventKey = index;
-    }
-
-    return (
-      <NavItem
-        key={key}
-        {...componentProps}
-      >
-        {menu.name}
-      </NavItem>
-    );
-  }
-
-  renderMenu(menu, index) {
-    if (menu.component === 'NavDropdown') {
-      return this.renderNavDropdown(menu, index);
-    }
-    else if (menu.component === 'NavItem') {
-      return this.renderNavItem(menu, index);
+  blockTopbar(isBlock) {
+    if (isBlock) {
+      return {
+        position: 'relative !important'
+      };
     }
   }
 
@@ -187,17 +89,115 @@ class MenuBar extends React.Component {
     }
   }
 
-  blockTopbar(isBlock) {
-    if (isBlock) {
-      return {
-        position: 'relative !important'
-      };
+  renderNavItem(menu, index) {
+    let key = _.uniqueId(`menu_${index}_`);
+    let isVisible = !menu.visible ? 'hidden' : '';
+    let { componentProps } = menu;
+    let className = componentProps.className;
+
+    componentProps.className = classNames(className, isVisible);
+
+    if (menu.icon) {
+      const icon = <Icon name={menu.icon} />;
+
+      menu.name = `${icon} ${menu.name}`;
+    }
+
+    if (!componentProps.id) {
+      componentProps.id = key;
+    }
+
+    if (!componentProps.eventKey) {
+      componentProps.eventKey = index;
+    }
+
+    return (
+      <NavItem
+        key={key}
+        {...componentProps}
+      >
+        {menu.name}
+      </NavItem>
+    );
+  }
+
+  renderNavDropdown(menu, index) {
+    let key = _.uniqueId(`menu_${index}_`);
+    let isVisible = !menu.visible ? 'hidden' : '';
+    let { componentProps } = menu;
+    let className = componentProps.className;
+
+    componentProps.className = classNames(className, isVisible);
+
+    if (menu.icon) {
+      const icon = <Icon name={menu.icon} />;
+
+      menu.name = `${icon} ${menu.name}`;
+    }
+
+    if (!componentProps.id) {
+      componentProps.id = key;
+    }
+
+    if (!componentProps.eventKey) {
+      componentProps.eventKey = index;
+    }
+
+    return (
+      <NavDropdown
+        key={key}
+        title={menu.name}
+        {...componentProps}
+      >
+        {menu.children.map(this.renderMenuItem)}
+      </NavDropdown>
+    );
+  }
+
+  renderMenuItem(menuItem, index) {
+    let key = _.uniqueId(`menu_item_${index}_`);
+    let isVisible = !menuItem.visible ? 'hidden' : '';
+    let { componentProps } = menuItem;
+    let className = componentProps.className;
+
+    componentProps.className = classNames(className, isVisible);
+
+    if (menuItem.icon) {
+      const icon = <Icon name={menuItem.icon} />;
+
+      menuItem.name = `${icon} ${menuItem.name}`;
+    }
+
+    if (!componentProps.id) {
+      componentProps.id = key;
+    }
+
+    if (!componentProps.eventKey) {
+      componentProps.eventKey = index;
+    }
+
+    return (
+      <MenuItem
+        key={key}
+        {...componentProps}
+      >
+        {menuItem.name}
+      </MenuItem>
+    );
+  }
+
+  renderMenu(menu, index) {
+    if (menu.component === 'NavDropdown') {
+      return this.renderNavDropdown(menu, index);
+    }
+    else if (menu.component === 'NavItem') {
+      return this.renderNavItem(menu, index);
     }
   }
 
   render() {
     let data = this.props.data || [];
-    let brandName = data.brandName || '';
+    let brandName = data.brandName || this.props.brandName;
     let isLogo = this.props.logo;
     let isMenuMobile = this.props.menuMobile;
     let isBlock = this.props.block;
@@ -239,6 +239,7 @@ class MenuBar extends React.Component {
 
 MenuBar.propTypes = {
   className: React.PropTypes.string,
+  brandName: React.PropTypes.string,
   data: React.PropTypes.array,
   style: React.PropTypes.object,
   contentLeft: React.PropTypes.node,

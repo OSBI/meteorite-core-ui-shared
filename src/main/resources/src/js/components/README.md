@@ -1,6 +1,6 @@
 # Components
 
-## Summary
+## Table of Contents
 
 * [Bootstrap](bootstrap/)
 * [Saiku](saiku/)

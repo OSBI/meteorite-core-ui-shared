@@ -1,7 +1,8 @@
 # Saiku components
 
-## Summary
+## Table of Contents
 
 * [Icon](Icon/)
+* [MenuBar](MenuBar/)
 
 **[⬅ back to main](../)**

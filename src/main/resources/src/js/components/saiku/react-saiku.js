@@ -14,4 +14,5 @@
  *   limitations under the License.
  */
 
-export Icon from './Icon/Icon';
+export Icon from './Icon';
+export MenuBar from './MenuBar';
